@@ -20,10 +20,6 @@ const createAppRouter = (queryClient: QueryClient) =>
           element: <PolicyholderRoute />,
           loader: () => policyholdersLoader(queryClient)(),
         },
-        {
-          path: "/policyholder/:policyholderId",
-          element: <div>policyholder detail</div>,
-        },
         { index: true, element: <Navigate to="/policyholder" replace /> },
       ],
       errorElement: <ErrorPage />,

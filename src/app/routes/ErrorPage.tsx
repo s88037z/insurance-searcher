@@ -1,5 +1,5 @@
 import { Link } from "@/components/ui/Link";
-import { toErrorString } from "@/utils/error";
+import { toErrorString } from "@/utils/format";
 import { useRouteError } from "react-router-dom";
 
 export default function ErrorPage() {

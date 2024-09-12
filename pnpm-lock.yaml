@@ -14,6 +14,12 @@ dependencies:
   axios:
     specifier: ^1.7.7
     version: 1.7.7
+  classnames:
+    specifier: ^2.5.1
+    version: 2.5.1
+  lodash-es:
+    specifier: ^4.17.21
+    version: 4.17.21
   react:
     specifier: ^18.3.1
     version: 18.3.1
@@ -23,6 +29,9 @@ dependencies:
   react-error-boundary:
     specifier: ^4.0.13
     version: 4.0.13(react@18.3.1)
+  react-hook-form:
+    specifier: ^7.53.0
+    version: 7.53.0(react@18.3.1)
   react-router-dom:
     specifier: ^6.26.1
     version: 6.26.1(react-dom@18.3.1)(react@18.3.1)
@@ -52,6 +61,9 @@ devDependencies:
   '@tanstack/eslint-plugin-query':
     specifier: ^5.53.0
     version: 5.53.0(eslint@9.10.0)(typescript@5.5.4)
+  '@types/lodash-es':
+    specifier: ^4.17.12
+    version: 4.17.12
   '@types/react':
     specifier: ^18.3.3
     version: 18.3.5
@@ -1155,6 +1167,12 @@ packages:
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
     dev: true
 
+  /@types/lodash-es@4.17.12:
+    resolution: {integrity: sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==}
+    dependencies:
+      '@types/lodash': 4.17.7
+    dev: true
+
   /@types/lodash@4.17.7:
     resolution: {integrity: sha512-8wTvZawATi/lsmNu10/j2hk1KEP0IvjubqPE3cu1Xz7xfXXt5oCq3SNUz4fMIP4XGF9Ky+Ue2tBA3hcS7LSBlA==}
     dev: true
@@ -1578,6 +1596,10 @@ packages:
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
+
+  /classnames@2.5.1:
+    resolution: {integrity: sha512-saHYOzhIQs6wy2sVxTM6bUDsQO4F50V9RQ22qBpEdCW+I+/Wmke2HOl6lS6dTpdxVhb88/I6+Hs+438c3lfUow==}
+    dev: false
 
   /cli-spinners@2.9.2:
     resolution: {integrity: sha512-ywqV+5MmyL4E7ybXgKys4DugZbX0FC6LnwrhjuykIjnK9k8OQacQ7axGKnjDXWNhns0xot3bZI5h55H8yo9cJg==}
@@ -2417,6 +2439,10 @@ packages:
       p-locate: 6.0.0
     dev: true
 
+  /lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash.camelcase@4.3.0:
     resolution: {integrity: sha512-TwuEnCnxbc3rAvhf/LbG7tJUDzhqXyFnv3dtzLOPgCG/hODL7WFnsbwktkD7yUV0RrreP/l1PALq/YSg6VvjlA==}
     dev: true
@@ -2940,6 +2966,15 @@ packages:
       react: '>=16.13.1'
     dependencies:
       '@babel/runtime': 7.25.6
+      react: 18.3.1
+    dev: false
+
+  /react-hook-form@7.53.0(react@18.3.1):
+    resolution: {integrity: sha512-M1n3HhqCww6S2hxLxciEXy2oISPnAzxY7gvwVPrtlczTM/1dDadXgUxDpHMrMTblDOcm/AXtXxHwZ3jpg1mqKQ==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      react: ^16.8.0 || ^17 || ^18 || ^19
+    dependencies:
       react: 18.3.1
     dev: false
 

@@ -12,3 +12,8 @@ api.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+export type ExtraQueryConfig<
+  T extends (...args: TParams[]) => unknown,
+  TParams = unknown[],
+> = Omit<ReturnType<T>, "queryKey" | "queryFn">;
