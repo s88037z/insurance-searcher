@@ -6,29 +6,25 @@ import {
 import MainLayout from "../components/layout/MainLayout";
 import ErrorPage from "./routes/ErrorPage";
 import PolicyholderRoute from "./routes/Policyholder";
-import { useQueryClient, QueryClient } from "@tanstack/react-query";
-import { policyholdersLoader } from "@/features/policyholder/api/getPolicyholder";
 
-const createAppRouter = (queryClient: QueryClient) =>
+const createAppRouter = () =>
   createBrowserRouter([
     {
       path: "/",
       element: <MainLayout />,
       children: [
         {
-          path: "/policyholder",
+          path: "/policyholders",
           element: <PolicyholderRoute />,
-          loader: () => policyholdersLoader(queryClient)(),
         },
-        { index: true, element: <Navigate to="/policyholder" replace /> },
+        { index: true, element: <Navigate to="/policyholders" replace /> },
       ],
       errorElement: <ErrorPage />,
     },
-    { path: "*", element: <Navigate to="/policyholder" replace /> },
+    { path: "*", element: <Navigate to="/policyholders" replace /> },
   ]);
 
 export default function AppRouter() {
-  const queryClient = useQueryClient();
-  const router = createAppRouter(queryClient);
+  const router = createAppRouter();
   return <RouterProvider router={router} />;
 }

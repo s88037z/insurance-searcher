@@ -1,5 +1,6 @@
 import { delay } from "msw";
 import { PolicyholderModel } from "./db";
+import { omit } from "lodash-es";
 
 export const networkDelay = () => {
   const delayTime = import.meta.env.TEST
@@ -50,5 +51,5 @@ export const appendPolicyholderChildren = (
   }
   left.sort((a, b) => a.code.localeCompare(b.code));
   right.sort((a, b) => a.code.localeCompare(b.code));
-  return { ...policyholder, l: left, r: right };
+  return { ...omit(policyholder, "parent"), l: left, r: right };
 };

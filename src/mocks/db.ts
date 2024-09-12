@@ -9,6 +9,7 @@ export type PolicyholderModel = {
   introducer_code: string;
   l: string | null;
   r: string | null;
+  parent: string | null;
 };
 export const db = factory({
   policyholder: {
@@ -19,6 +20,7 @@ export const db = factory({
     introducer_code: String,
     l: nullable(() => null),
     r: nullable(() => null),
+    parent: nullable(() => null),
   },
 });
 function formatCode(code: number): string {
@@ -68,6 +70,16 @@ export const initDb = (nums = 14) => {
             l: newPolicyholder.id,
           }
         : { r: newPolicyholder.id },
+    });
+    db.policyholder.update({
+      where: {
+        id: {
+          equals: newPolicyholder.id,
+        },
+      },
+      data: {
+        parent: inserted.id,
+      },
     });
     queue.push(newPolicyholder);
   }
