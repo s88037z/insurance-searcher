@@ -24,12 +24,10 @@ export default function PolicyholderPreview({
   return (
     <div className="mt-8 flex flex-col items-center">
       {policyholder ? (
-        <>
-          <PolicyholderRoot
-            policyholder={policyholder}
-            parent={queryParent.data}
-          />
-        </>
+        <PolicyholderRoot
+          policyholder={policyholder}
+          parent={queryParent.data}
+        />
       ) : isPending ? (
         <div>Please entering search code!</div>
       ) : (

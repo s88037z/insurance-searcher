@@ -44,14 +44,12 @@ export default function PolicyholderBlock({
         <span id="policyholder-code-label" className="sr-only">
           Policyholder Code:
         </span>
-
         {policyholder.code}
       </div>
       <div className="text-center" aria-labelledby="policyholder-name-label">
         <span id="policyholder-name-label" className="sr-only">
           Policyholder Name:
         </span>
-
         {policyholder.name}
       </div>
     </div>

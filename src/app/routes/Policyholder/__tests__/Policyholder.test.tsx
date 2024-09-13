@@ -33,63 +33,64 @@ const renderApp = () => {
 
   return { mockCodes };
 };
-
-test("Title and search bar should be rendered", async () => {
-  renderApp();
-  expect(screen.getByText(/policyholder searcher/i)).toBeInTheDocument();
-  expect(
-    screen.getByPlaceholderText(/enter policyholder code/i),
-  ).toBeInTheDocument();
-});
-
-test("Search policyholder should render correctly", async () => {
-  const { mockCodes } = renderApp();
-  const searchInput = screen.getByPlaceholderText(/enter policyholder code/i);
-  const searchBtn = screen.getByDisplayValue(/search/i);
-
-  // Search with unknown code
-  await userEvent.type(searchInput, "UnknownCode");
-  await userEvent.click(searchBtn);
-  await waitForLoadingToFinish();
-  expect(screen.getByText(/Not found/i)).toBeInTheDocument();
-
-  // Search with valid code
-  await userEvent.clear(searchInput);
-  await userEvent.type(searchInput, mockCodes[0]);
-  await userEvent.click(searchBtn);
-  await waitForLoadingToFinish();
-
-  const policyholderCodes = screen.getAllByLabelText(/Policyholder Code/i);
-  policyholderCodes.forEach((code, index) => {
-    const sibling = code.nextElementSibling;
-    expect(sibling).toBeInTheDocument();
-    expect(sibling).toHaveTextContent(/Policyholder Name/i);
-    expect(code).toHaveTextContent(mockCodes[index]);
+describe("Policyholder route main functionalities", () => {
+  test("Title and search bar should be rendered", async () => {
+    renderApp();
+    expect(screen.getByText(/policyholder searcher/i)).toBeInTheDocument();
+    expect(
+      screen.getByPlaceholderText(/enter policyholder code/i),
+    ).toBeInTheDocument();
   });
-});
 
-test("Policyholder navigation should work correctly", async () => {
-  const { mockCodes } = renderApp();
-  const searchInput = screen.getByPlaceholderText(/enter policyholder code/i);
-  const searchBtn = screen.getByDisplayValue(/search/i);
+  test("Search policyholder should render correctly", async () => {
+    const { mockCodes } = renderApp();
+    const searchInput = screen.getByPlaceholderText(/enter policyholder code/i);
+    const searchBtn = screen.getByDisplayValue(/search/i);
 
-  await userEvent.type(searchInput, mockCodes[0]);
-  await userEvent.click(searchBtn);
-  await waitForLoadingToFinish();
-  let rootPolicyholder = screen.getAllByLabelText(/Policyholder Code/i)[0];
-  expect(rootPolicyholder).toHaveTextContent(mockCodes[0]);
+    // Search with unknown code
+    await userEvent.type(searchInput, "UnknownCode");
+    await userEvent.click(searchBtn);
+    await waitForLoadingToFinish();
+    expect(screen.getByText(/Not found/i)).toBeInTheDocument();
 
-  // Navigate to child
-  const childPolicyholder = screen.getByText(mockCodes[2]);
-  await userEvent.click(childPolicyholder);
-  await waitForLoadingToFinish();
-  rootPolicyholder = screen.getAllByLabelText(/Policyholder Code/i)[0];
-  expect(rootPolicyholder).toHaveTextContent(mockCodes[2]);
+    // Search with valid code
+    await userEvent.clear(searchInput);
+    await userEvent.type(searchInput, mockCodes[0]);
+    await userEvent.click(searchBtn);
+    await waitForLoadingToFinish();
 
-  //Navigate to parent
-  const previousLevelBtn = screen.getByText(/Previous level/i);
-  await waitFor(() => expect(previousLevelBtn).not.toBeDisabled());
-  await act(async () => await previousLevelBtn.click());
-  const policyholders = await screen.findAllByLabelText(/Policyholder Code/i);
-  expect(policyholders[0]).toHaveTextContent(mockCodes[0]);
+    const policyholderCodes = screen.getAllByLabelText(/Policyholder Code/i);
+    policyholderCodes.forEach((code, index) => {
+      const sibling = code.nextElementSibling;
+      expect(sibling).toBeInTheDocument();
+      expect(sibling).toHaveTextContent(/Policyholder Name/i);
+      expect(code).toHaveTextContent(mockCodes[index]);
+    });
+  });
+
+  test("Policyholder navigation should work correctly", async () => {
+    const { mockCodes } = renderApp();
+    const searchInput = screen.getByPlaceholderText(/enter policyholder code/i);
+    const searchBtn = screen.getByDisplayValue(/search/i);
+
+    await userEvent.type(searchInput, mockCodes[0]);
+    await userEvent.click(searchBtn);
+    await waitForLoadingToFinish();
+    let rootPolicyholder = screen.getAllByLabelText(/Policyholder Code/i)[0];
+    expect(rootPolicyholder).toHaveTextContent(mockCodes[0]);
+
+    // Navigate to child
+    const childPolicyholder = screen.getByText(mockCodes[2]);
+    await userEvent.click(childPolicyholder);
+    await waitForLoadingToFinish();
+    rootPolicyholder = screen.getAllByLabelText(/Policyholder Code/i)[0];
+    expect(rootPolicyholder).toHaveTextContent(mockCodes[2]);
+
+    //Navigate to parent
+    const previousLevelBtn = screen.getByText(/Previous level/i);
+    await waitFor(() => expect(previousLevelBtn).not.toBeDisabled());
+    await act(async () => await previousLevelBtn.click());
+    const policyholders = await screen.findAllByLabelText(/Policyholder Code/i);
+    expect(policyholders[0]).toHaveTextContent(mockCodes[0]);
+  });
 });
