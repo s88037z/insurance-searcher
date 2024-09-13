@@ -2,7 +2,7 @@ import PolicyholderLayout from "@/features/policyholder/components/PolicyholderL
 import PolicyholderSearcher, {
   ISearcherForm,
 } from "@/features/policyholder/components/PolicyholderSearcher";
-import PolicyholderPreview from "../../features/policyholder/components/PolicyholderPreview";
+import PolicyholderPreview from "../../../features/policyholder/components/PolicyholderPreview";
 import { useSearchParams } from "react-router-dom";
 import { SubmitHandler } from "react-hook-form";
 import { PolicyholderSearchKeys } from "@/features/policyholder/types";

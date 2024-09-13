@@ -8,7 +8,13 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "vitest --run"
+    ]
   },
   "dependencies": {
     "@tanstack/react-query": "^5.55.4",
@@ -31,8 +37,11 @@
     "@faker-js/faker": "^9.0.0",
     "@mswjs/data": "^0.16.2",
     "@tanstack/eslint-plugin-query": "^5.53.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@testing-library/user-event": "^14.5.2",
     "@types/lodash-es": "^4.17.12",
-    "@types/react": "^18.3.3",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.20",
@@ -41,6 +50,8 @@
     "eslint-plugin-react-refresh": "^0.4.9",
     "globals": "^15.9.0",
     "husky": "^9.1.5",
+    "jsdom": "^25.0.0",
+    "lint-staged": "^15.2.10",
     "msw": "^2.4.4",
     "postcss": "^8.4.45",
     "prettier": "^3.3.3",
@@ -48,7 +59,8 @@
     "tailwindcss": "^3.4.10",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
-    "vite": "^5.4.1"
+    "vite": "^5.4.1",
+    "vitest": "^2.1.0"
   },
   "msw": {
     "workerDirectory": [

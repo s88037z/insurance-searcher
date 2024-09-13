@@ -83,4 +83,5 @@ export const initDb = (nums = 14) => {
     });
     queue.push(newPolicyholder);
   }
+  return existCodes;
 };

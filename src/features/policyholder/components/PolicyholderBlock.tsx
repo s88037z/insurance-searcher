@@ -37,8 +37,23 @@ export default function PolicyholderBlock({
       onMouseEnter={onPolicyholderHover}
       onClick={() => navigate(`/policyholders?code=${policyholder.code}`)}
     >
-      <div className="mb-2 text-center">{policyholder.code}</div>
-      <div className="text-center">{policyholder.name}</div>
+      <div
+        className="mb-2 text-center"
+        aria-labelledby="policyholder-code-label"
+      >
+        <span id="policyholder-code-label" className="sr-only">
+          Policyholder Code:
+        </span>
+
+        {policyholder.code}
+      </div>
+      <div className="text-center" aria-labelledby="policyholder-name-label">
+        <span id="policyholder-name-label" className="sr-only">
+          Policyholder Name:
+        </span>
+
+        {policyholder.name}
+      </div>
     </div>
   );
 }
