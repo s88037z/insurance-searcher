@@ -5,5 +5,7 @@ type PolicyholderLayoutProps = {
 export default function PolicyholderLayout({
   children,
 }: PolicyholderLayoutProps) {
-  return <div className="flex flex-col items-center text-xl">{children}</div>;
+  return (
+    <div className="flex flex-col items-center px-6 text-xl">{children}</div>
+  );
 }
