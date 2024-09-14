@@ -4,6 +4,7 @@ import { cloneDeep } from "lodash-es";
 type PolicyholderNode = Policyholder["l"][0];
 
 export const toLevels = (root: Policyholder): PolicyholderNode[][] => {
+  const levelLimit = 4;
   const levels: PolicyholderNode[][] = [[root]];
   const [leftNodes, rightNodes] = [cloneDeep(root.l), cloneDeep(root.r)];
   let level = 1;
@@ -12,7 +13,10 @@ export const toLevels = (root: Policyholder): PolicyholderNode[][] => {
     Math.pow(2, level) / 2,
   ];
 
-  while (leftNodes.length > 0 || rightNodes.length > 0) {
+  while (
+    level < levelLimit &&
+    (leftNodes.length > 0 || rightNodes.length > 0)
+  ) {
     if (!levels[level]) {
       levels[level] = [];
     }

@@ -28,7 +28,7 @@ function formatCode(code: number): string {
   return "0".repeat(6 - codeStr.length) + codeStr;
 }
 
-export const initDb = (nums = 14) => {
+export const initDb = (nums = 25) => {
   const queue = [];
   const existCodes = [];
   let code = 1;
