@@ -15,6 +15,16 @@ pnpm dev
 ```
 
 ### Showcase:
+- Policyholder Search:
+
+https://github.com/user-attachments/assets/9707a500-b8f7-4adb-bed0-4be0efbc4981
+
+- Policyholder Navigation:
+
+https://github.com/user-attachments/assets/15202b2c-ced2-4c30-87d5-5c72a2126613
+
+
+
 
 ### Tech choices:
 
