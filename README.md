@@ -1,50 +1,90 @@
-# React + TypeScript + Vite
+## Policy Searcher Feature:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+### Description
 
-Currently, two official plugins are available:
+- Implement policyholder search.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Installation:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+git clone https://github.com/s88037z/insurance-searcher
+cd insurance-searcher
+cp .env.example .env
+pnpm install
+pnpm dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Showcase:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Tech choices:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- `Tailwind(CSS)`:
+  - I'm more familiar with **CSS-in-JS**, but utility CSS **has its benefits** in quickly reusing styles and systematizing many properties.
+- `React-query(Data-fetching)`:
+  - A great tool for handling API requests. **Conceptually, it acts as `server-side data management`**, with excellent caching and refetch mechanisms, reducing much of the complexity in client-side state management.
+- `Msw(Mocking-Api)`:
+  - It can simulate real backend response scenarios very effectively.
+- `Vitest+testing library(Testing)`:
+  - **We should write tests in a way that reflects how users actually interact with the app as much as possible.** Testing Library helps simulate user interactions in test cases.
+- Most of these tools are new to me, but I believe they are among the best solutions for the current situation and modern apps.
+
+### Project structure
+
+- Although **the requirement only calls for one feature** (policyholder search), I structured the project **as if** it were a larger app, allowing for new features to be added later.
+
+```sh
+├── public
+│   ├── mockServiceWorker.js
+│   └── vite.svg
+├── src
+│   ├── app                      # application layer:
+│   │   ├── AppProvider.tsx      # global provider
+│   │   ├── AppRouter.tsx        # main router
+│   │   ├── index.tsx
+│   │   └── routes               # application routes
+│   │       ├── ErrorPage.tsx
+│   │       └── Policyholder
+│   │           ├── __tests__
+│   │           │   └── Policyholder.test.tsx
+│   │           └── index.tsx
+│   ├── assets
+│   │   └── react.svg
+│   ├── components               # reusable components across app
+│   │   ├── MainError.tsx
+│   │   ├── layout
+│   │   │   └── MainLayout.tsx
+│   │   └── ui
+│   │       └── Link.tsx
+│   ├── config
+│   │   └── env.ts
+│   ├── features                # feature based modules, has it's own api,component,...etc
+│   │   └── policyholder
+│   │       ├── api
+│   │       │   └── getPolicyholder.tsx
+│   │       ├── components
+│   │       │   ├── PolicyholderBlock.tsx
+│   │       │   ├── PolicyholderLayout.tsx
+│   │       │   ├── PolicyholderPreview.tsx
+│   │       │   ├── PolicyholderRoot.tsx
+│   │       │   └── PolicyholderSearcher.tsx
+│   │       ├── types.ts
+│   │       └── utils.ts
+│   ├── index.css
+│   ├── lib                    # pre-config for the third-party libs
+│   │   ├── apiClient.ts
+│   │   └── reactQuery.ts
+│   ├── main.tsx
+│   ├── mocks                  # handling mocking api and fake db
+│   │   ├── browser.ts
+│   │   ├── db.ts
+│   │   ├── handlers.ts
+│   │   ├── index.ts
+│   │   ├── mockData.json
+│   │   └── utiles.ts
+│   ├── testing               # pre-config for testing setup
+│   │   ├── setupTests.ts
+│   │   └── utils.ts
+│   ├── utils
+│   │   └── format.ts
+│   └── vite-env.d.ts
 ```
