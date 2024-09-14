@@ -1,6 +1,6 @@
 import { env } from "@/config/env";
 import { http, HttpResponse } from "msw";
-import { appendPolicyholderChildren, networkDelay } from "./utiles";
+import { appendPolicyholderChildren, networkDelay } from "./utils";
 import { db, PolicyholderModel } from "./db";
 
 export const handlers = [
